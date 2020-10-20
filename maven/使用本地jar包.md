@@ -39,19 +39,19 @@
     dev-support         hadoop-client-modules         hadoop-hdfs-project       hadoop-project       LICENSE.txt
     hadoop-assemblies   hadoop-cloud-storage-project  hadoop-mapreduce-project  hadoop-project-dist  NOTICE.txt
     hadoop-build-tools  hadoop-common-project         hadoop-maven-plugins      hadoop-tools         pom.xml
-    [x@centos7 hadoop-2.7.6-src]# mkdir lib
+    [x@centos7 hadoop-2.7.6-src]# mkdir libs
     [x@centos7 hadoop-2.7.6-src]# ls
     BUILDING.txt        hadoop-client                 hadoop-dist               hadoop-minicluster   hadoop-yarn-project  pom.xml
-    dev-support         hadoop-client-modules         hadoop-hdfs-project       hadoop-project       lib                  README.txt
+    dev-support         hadoop-client-modules         hadoop-hdfs-project       hadoop-project       libs                 README.txt
     hadoop-assemblies   hadoop-cloud-storage-project  hadoop-mapreduce-project  hadoop-project-dist  LICENSE.txt
     hadoop-build-tools  hadoop-common-project         hadoop-maven-plugins      hadoop-tools         NOTICE.txt
-    [x@centos7 hadoop-2.7.6-src]# cd lib
-    [x@centos7 lib]# cp ~/document/snappy-java-snappy-java-1.0.4.1/target/snappy-java-1.0.4.1.jar ./
-    [x@centos7 lib]# ls
+    [x@centos7 hadoop-2.7.6-src]# cd libs
+    [x@centos7 libs]# cp ~/document/snappy-java-snappy-java-1.0.4.1/target/snappy-java-1.0.4.1.jar ./
+    [x@centos7 libs]# ls
     snappy-java-1.0.4.1.jar
-    [x@centos7 lib]# ls
+    [x@centos7 libs]# ls
     snappy-java-1.0.4.1.jar
-    [x@centos7 target]# jar tf snappy-java-1.0.4.1.jar 
+    [x@centos7 libs]# jar tf snappy-java-1.0.4.1.jar 
     META-INF/MANIFEST.MF
     META-INF/
     META-INF/maven/
@@ -61,7 +61,7 @@
     META-INF/maven/org.xerial.snappy/snappy-java/pom.properties
     META-INF/maven/org.xerial.snappy/snappy-java/pom.xml
     ...
-    [x@centos7 lib]# cd ..
+    [x@centos7 libs]# cd ..
     [x@centos7 hadoop-2.7.6-src]# vim pom.xml
     ```
     在 `/project/dependencyManagement/dependencies` 节点下添加
@@ -71,6 +71,8 @@
         <artifactId>snappy-java</artifactId>
         <version>1.0.4.1</version>
         <scope>system</scope>
-        <systemPath>./lib/snappy-java-1.0.4.1.jar</systemPath>
+        <systemPath>/root/document/hadoop-2.7.6-src/libs/snappy-java-1.0.4.1.jar</systemPath>
     </dependency>
     ```
+
+Mushroom @20201019
