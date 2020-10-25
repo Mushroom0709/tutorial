@@ -13,7 +13,7 @@
     [x@centos cmake-3.15.7]# ldconfig
     [x@centos cmake-3.15.7]# cd ..
     ```
-2.  参见 [配置Maven](../maven/安装及配置.md)
+2.  参见 [配置Maven](../maven/安装及配置华为KunPeng仓库.md)
 3.  下载 netty-4.0.52 及 后期依赖
     ```shell
     [x@centos software]# wget https://codeload.github.com/netty/netty/tar.gz/netty-4.0.52.Final
