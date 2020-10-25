@@ -29,8 +29,8 @@
     [x@centos software]# mv /usr/bin/gcc /usr/bin/gcc-impl
     [x@centos software]# vi /usr/bin/gcc
     #! /bin/sh 
-    [x@centos software]# chmod +x /usr/bin/gcc
     /usr/bin/gcc-impl -fsigned-char "$@"
+    [x@centos software]# chmod +x /usr/bin/gcc
     [x@centos software]# command -v g++
     /usr/bin/g++
     [x@centos software]# mv /usr/bin/g++ /usr/bin/g++-impl
