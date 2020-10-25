@@ -42,24 +42,13 @@
 
 ##  编译
 1.  编译 netty-tcnative-netty-tcnative-parent-2.0.6 (netty 依赖)
-    1.  配置依赖
-        1.  安装 apr-1.5.2
-             ```shell
-            [x@centos software]# tar -zvxf apr-1.6.2.tar.gz
-            [x@centos software]# cd apr-1.6.2
-            [x@centos apr-1.6.2]# ./configure --prefix=/usr/local/apr
-            [x@centos apr-1.6.2]# make -j8
-            [x@centos apr-1.6.2]# make install
-            [x@centos apr-1.6.2]# ldconfig
-            [x@centos apr-1.6.2]# cd ..
-            ```
-    2.  释放文件
+    1.  释放文件
         ```shell
         [x@centos software]# tar -zvxf netty-tcnative-netty-tcnative-parent-2.0.6.Final.tar.gz
         [x@centos software]# mv netty-tcnative-netty-tcnative-parent-2.0.6.Final netty-tcnative-netty-tcnative-parent-2.0.6
         [x@centos software]# cd netty-tcnative-netty-tcnative-parent-2.0.6
         ```
-    3.  跳过 `boringssl-static`,修改 pom.xml 中:`project/profiles` 节点下
+    2.  跳过 `boringssl-static`,修改 pom.xml 中:`project/profiles` 节点下
         ```xml
         <profile>
         <id>all</id>
@@ -93,11 +82,11 @@
         </modules>
         </profile>
         ```
-    4.  编译安装到本地仓库
+    3.  编译安装到本地仓库
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# mvn install -DskipTests
         ```
-    5.  编译报错(无法下载 apr-1.6.2.tar.gz) 如下
+    4.  编译报错(无法下载 apr-1.6.2.tar.gz) 如下
         ```shell
         [get] Getting: http://www.us.apache.org/dist/apr/apr-1.6.2.tar.gz
         [get] To: /root/software/netty-tcnative-netty-tcnative-parent-2.0.6/openssl-static/target/apr-1.6.2.tar.gz
@@ -136,11 +125,11 @@
             ```shell
             [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# cp -p ../apr-1.6.2.tar.gz openssl-static/target/
             ```
-    6.  继续编译安装到本地仓库
+    5.  继续编译安装到本地仓库
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# mvn install -DskipTests
         ```
-    7.  编译卡死(ftp 无法下载openssl-1.0.2l.tar.gz) 如下
+    6.  编译卡死(ftp 无法下载openssl-1.0.2l.tar.gz) 如下
         ```shell
         main:
             [ftp] getting files
@@ -170,11 +159,11 @@
             [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# cp -p ../openssl-1.0.2l.tar.gz openssl-static/target/
             ```
         **@Mushroom:特别提醒，有三个build-openssl的profile，分别是linux,nuix(mac),win 自己盯着看仔细了，别改错节点不生效。**
-    8.  继续编译安装到本地仓库
+    7.  继续编译安装到本地仓库
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# mvn install -DskipTests
         ```
-    9.  遇到报错
+    8.  遇到报错
         ```shell
         main:
         [checksum] Could not find file /root/software/netty-tcnative-netty-tcnative-parent-2.0.6/libressl-static/target/apr-1.6.2.tar.gz to generate checksum for.
@@ -199,7 +188,7 @@
             ```shell
             [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# cp -p ../apr-1.6.2.tar.gz libressl-static/target/
             ```
-    10. 遇到如下情况
+    9.  遇到如下情况
         ```shell
         main:
         [get] Getting: http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.5.tar.gz
@@ -221,7 +210,7 @@
             ```shell
             [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# rm -rf libressl-static/target/libressl-2.5.5.tar.gz && cp -p ../libressl-2.5.5.tar.gz libressl-static/target/
             ```
-    11. 继续编译安装到本地仓库
+    10. 继续编译安装到本地仓库
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# mvn install -DskipTests
         ```
@@ -246,7 +235,7 @@
         [INFO] Finished at: 2020-10-26T00:03:50+08:00
         [INFO] ------------------------------------------------------------------------
         ```
-    12. 退出当前目录
+    11. 退出当前目录
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# cd ..
         ```
