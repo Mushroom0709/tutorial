@@ -3,7 +3,7 @@
 ##  准备环境
 1.  安装基本编译环境
     ```shell
-    [x@centos software]# yum install gcc* libstdc++* libtool autoconf automake ant bzip2 protobuf protobuf-devel openssl-devel  -y
+    [x@centos software]# yum install gcc* libstdc++* libtool autoconf automake ant protobuf protobuf-devel openssl-devel  -y
     [x@centos software]# wget https://cmake.org/files/v3.15/cmake-3.15.7.tar.gz
     [x@centos software]# tar -zvxf cmake-3.15.7.tar.gz
     [x@centos software]# cd cmake-3.15.7
@@ -22,23 +22,7 @@
     [x@centos software]# wget https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz (netty-tcnative-parent-2.0.6的依赖，XXX防火墙，需要手动下载)
     [x@centos software]# wget http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.5.5.tar.gz (netty-tcnative-parent-2.0.6的依赖，XXX防火墙，需要手动下载)
     ```
-4.  解决 `arm` 平台 `-fsigned-char` 问题
-    ```shell
-    [x@centos software]# command -v gcc
-    /usr/bin/gcc
-    [x@centos software]# mv /usr/bin/gcc /usr/bin/gcc-impl
-    [x@centos software]# vi /usr/bin/gcc
-    #! /bin/sh 
-    /usr/bin/gcc-impl -fsigned-char "$@"
-    [x@centos software]# chmod +x /usr/bin/gcc
-    [x@centos software]# command -v g++
-    /usr/bin/g++
-    [x@centos software]# mv /usr/bin/g++ /usr/bin/g++-impl
-    [x@centos software]# vi /usr/bin/g++
-    #! /bin/sh 
-    /usr/bin/g++-impl -fsigned-char "$@"
-    [x@centos software]# chmod +x /usr/bin/g++
-    ```
+4.  参见 [解决 `arm` 平台 `char` 问题](./解决arm平台char问题.md)
 
 ##  编译
 1.  编译 netty-tcnative-netty-tcnative-parent-2.0.6 (netty 依赖)
@@ -158,7 +142,7 @@
             ```shell
             [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# cp -p ../openssl-1.0.2l.tar.gz openssl-static/target/
             ```
-        **@Mushroom:特别提醒，有三个build-openssl的profile，分别是linux,nuix(mac),win 自己盯着看仔细了，别改错节点不生效。**
+        **@Mushroom:特别提醒，有三个build-openssl的profile，分别是linux,unix(mac),win 自己盯着看仔细了，别改错节点不生效。**
     7.  继续编译安装到本地仓库
         ```shell
         [x@centos netty-tcnative-netty-tcnative-parent-2.0.6]# mvn install -DskipTests
@@ -353,4 +337,4 @@
         [INFO] Finished at: 2020-10-26T00:30:30+08:00
         [INFO] ------------------------------------------------------------------------
         ```
-
+        jar包在 `all/target/` 下。
