@@ -1,7 +1,9 @@
 ## 配置基础环境
-1.  配置源
-    `[x@centos ~]# yum -y install ncurses ncurses-devel libaio-devel zlib-devel bzip2 net-tools cmake openssl openssl-devel`
-    `[x@centos ~]# yum -y install gcc* gcc-g++* libstdc++* glibc* java`
+1.  配置源 
+    ```shell
+    [x@centos ~]# yum -y install ncurses ncurses-devel libaio-devel zlib-devel bzip2 net-tools cmake openssl openssl-devel
+    [x@centos ~]# yum -y install gcc* gcc-g++* libstdc++* glibc* java
+    ```
 2.  升级Cmake版本为3.5.2
     ```shell
     [x@centos Document]# tar -zvxf cmake-3.5.2.tar.gz
@@ -66,10 +68,19 @@
 
 ## 安装 MYSql-5.7.27
 1.  下载源码包
-    `[x@centos Document]# wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.27.tar.gz`
-    `[x@centos Document]# wget https://udomain.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz`
+    ```shell
+    [x@centos Document]# wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.27.tar.gz
+    [x@centos Document]# wget https://udomain.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz
+    ```
 2.  预备环境
-    1.  `[x@centos Document]# yum -y install bison* ncurses*`
+    1.  解压并配置boost
+    ```shell
+    [x@centos Document]# yum -y install bison* ncurses*
+    [x@centos Document]# tar -zvxf mysql-5.7.27.tar.gz
+    [x@centos Document]# tar -zvxf boost_1_59_0.tar.gz
+    [x@centos Document]# mkdir -p mysql-5.7.27/boost/
+    [x@centos Document]# mv boost_1_59_0 mysql-5.7.27/boost/  
+    ```
     2.  修改文件 `mysql-5.7.27/sql/mysqld.cc`
     ```shell
     16 #include "mysqld.h"
@@ -98,12 +109,6 @@
     ```
 3.  安装
     ```shell
-    [x@centos Document]# tar -zvxf mysql-5.7.27.tar.gz
-    [x@centos Document]# tar -zvxf boost_1_59_0.tar.gz
-    [x@centos Document]# mkdir -p mysql-5.7.27/boost/
-    [x@centos Document]# mv boost_1_59_0 mysql-5.7.27/boost/
-    [x@centos Document]# cp boost_1_59_0.tar.gz mysql-5.7.27/boot/
-    [x@centos Document]# cp 0001-Bug-94699-Mysql-deadlock-and-bugcheck-on-aarch64.patch mysql-5.7.27/
     [x@centos Document]# cd mysql-5.7.27
     [x@centos mysql-5.7.27]# cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
                              -DMYSQL_DATADIR=/data/data \
@@ -195,6 +200,8 @@
     [x@centos mysql]# chkconfig mysql on
     [x@centos mysql]# service mysql start
     [x@centos mysql]# mysql -uroot -p
+    mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_passwd'; (可选)
+    mysql > flush privileges; (上一条指令执行后执行)
     ```
 
 ## 准备测试工具 BenchMarkSQL
@@ -209,7 +216,7 @@
     [x@centos BenchMarkSQL]# cd /home/BenchMarkSQL/run
     [x@centos run]# chmod 777 *.sh
     [x@centos run]# cp props.mysql x_mysql.properties
-    [x@centos run]# vi my_mysql.properties
+    [x@centos run]# vi x_mysql.properties
     ```
     |参数       |值                     |说明        |
     |-----------|----------------------:|:---------:|
