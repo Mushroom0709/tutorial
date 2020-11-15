@@ -160,8 +160,6 @@
     [x@centos ~]# passwd mysql (可选)
     [x@centos ~]# chown -R mysql:mysql /usr/local/mysql
     [x@centos ~]# mkdir -p /data/mysql/log /data/mysql/data /data/mysql/run /data/mysql/tmp
-    [x@centos ~]# vi /data/mysql/log/mysql.log (空文件保存)
-    [x@centos ~]# vi /data/mysql/run/mysql.pid (空文件保存)
     [x@centos ~]# chown -R mysql:mysql /data/mysql
     ```
 
@@ -187,9 +185,9 @@
     transaction-isolation=READ-COMMITTED #修改默认隔离级别
     
     #buffers 
-    innodb_buffer_pool_size=8G #设置buffer pool size,一般为服务器内存60% 
-    innodb_buffer_pool_instances=16 #设置buffer pool instance个数，提高并发能力 
-    innodb_log_buffer_size=64M #设置log buffer size大小 
+    innodb_buffer_pool_size=2G #设置buffer pool size,一般为服务器内存60% 
+    innodb_buffer_pool_instances=32 #设置buffer pool instance个数，提高并发能力 
+    innodb_log_buffer_size=256M #设置log buffer size大小 
     
     #tune 
     sync_binlog=1 #设置每次sync_binlog事务提交刷盘 
@@ -228,10 +226,9 @@
     2020-11-11T03:53:38.770472Z 1 [Note] A temporary password is generated for root@localhost: u(Jjw*vzs8jf
     [x@centos ~]# chkconfig mysql on
     [x@centos ~]# mysqld --defaults-file=/etc/my.cnf --user=mysql &
-    [x@centos ~]# ln -s /data/mysql/run/mysql.sock /tmp/mysql.sock
     [x@centos ~]# mysql -uroot -p
     mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_passwd'; (可选)
-    Query OK, 1 row affected (0.00 sec)
+    Query OK, 0 row affected (0.00 sec)
     mysql > flush privileges; (上一条指令执行后执行)
     Query OK, 1 row affected (0.00 sec)
     ```
