@@ -185,27 +185,21 @@
     transaction-isolation=READ-COMMITTED #修改默认隔离级别
     
     #buffers 
-    innodb_buffer_pool_size=2G #设置buffer pool size,一般为服务器内存60% 
-    innodb_buffer_pool_instances=32 #设置buffer pool instance个数，提高并发能力 
+    innodb_buffer_pool_size=250G #设置buffer pool size,一般为服务器内存60% 
+    innodb_buffer_pool_instances=64 #设置buffer pool instance个数，提高并发能力 
     innodb_log_buffer_size=256M #设置log buffer size大小 
     
     #tune 
     sync_binlog=1 #设置每次sync_binlog事务提交刷盘 
-    innodb_flush_log_at_trx_commit=0 #每次事务提交时MySQL都会把log buffer的数据写入log file，并且flush(刷到磁盘)中去 
+    innodb_flush_log_at_trx_commit=1 #每次事务提交时MySQL都会把log buffer的数据写入log file，并且flush(刷到磁盘)中去 
     innodb_use_native_aio=1 #开启异步IO 
     innodb_spin_wait_delay=180 #设置spin_wait_delay 参数，防止进入系统自旋 
     innodb_sync_spin_loops=25  #设置spin_loops 循环次数，防止进入系统自旋 
-    innodb_flush_method=O_DIRECT #设置innodb数据文件及redo log的打开、刷写模式 
-    innodb_io_capacity=20000 # 设置innodb 后台线程每秒最大iops上限 
-    innodb_io_capacity_max=40000 #设置压力下innodb 后台线程每秒最大iops上限 
-    innodb_lru_scan_depth=9000 #设置page cleaner线程每次刷脏页的数量 
-    innodb_page_cleaners=16  #设置将脏数据写入到磁盘的线程数 
+    innodb_flush_method=O_DIRECT #设置innodb数据文件及redo log的打开、刷写模式
+    innodb_page_cleaners=32  #设置将脏数据写入到磁盘的线程数 
     
     #perf special 
-    innodb_flush_neighbors=0 #检测该页所在区(extent)的所有页，如果是脏页，那么一起进行刷新，SSD关闭该功能 
-    innodb_write_io_threads=16 #设置写线程数 
-    innodb_read_io_threads=16 #设置读线程数 
-    innodb_purge_threads=32  #设置回收已经使用并分配的undo页线程数 
+    innodb_flush_neighbors=0 #检测该页所在区(extent)的所有页，如果是脏页，那么一起进行刷新，SSD关闭该功能
     ```
     在 `/etc/profile` 末尾添加
     ```shell

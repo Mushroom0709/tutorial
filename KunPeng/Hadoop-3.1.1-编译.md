@@ -71,7 +71,7 @@
     ```
 4.  编译打包
     ```shell
-    [x@centos hadoop-3.1.1-src]# mvn package -Pdist,native,docs -DskipTests
+    [x@centos hadoop-3.1.1-src]# mvn package -Pdist,native -Dtar -DskipTests -Dmaven.javadoc.skip=true
     ```
 5.  遇到报错，提示找不到 java symbol:
     ```
@@ -240,3 +240,5 @@
     [INFO] Finished at: 2020-10-26T10:32:36+08:00
     [INFO] ------------------------------------------------------------------------
     ```
+
+# 验证

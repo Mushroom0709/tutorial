@@ -29,10 +29,10 @@
 ### 二、配置maven
 1.  安装
     ```shell
-    [x@centos7 download]# wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.6.1-bin.tar.gz
-    [x@centos7 download]# tar -xvf  apache-maven-3.6.1-bin.tar.gz
-    [x@centos7 download]# sudo mv -f apache-maven-3.6.1 /usr/local/
-    ```
+    [x@centos7 download]# wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+    [x@centos7 download]# tar -xvf  apache-maven-3.6.3-bin.tar.gz
+    [x@centos7 download]# sudo mv -f apache-maven-3.6.3 /usr/local/
+    ```     
 2.  配置环境变量
     1.  在`/etc/profile`中追加  
         ```shell
